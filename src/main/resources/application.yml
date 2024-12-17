@@ -1,0 +1,17 @@
+fiberOptic:
+  server: # 光纤解调仪ip和地址
+    ip: 192.168.0.19
+    port: 4567
+  kafka:
+    server: 10.151.1.109:9092
+    topic: upload_data
+  threadPool:
+    core_size: 2
+    max_size: 2
+    queue_capacity: 0
+  dataPath: C:\Users\15854\Desktop\matlab\PSO\5th_data.txt
+
+
+#channels: # 几号通道的几号测点有数据
+#  - id: 0
+#    numbers: [1, 2, 3]

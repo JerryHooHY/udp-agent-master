@@ -23,3 +23,10 @@
 hs_err_pid*
 /target/
 /.idea/
+
+mcode/all/data
+mcode/all/data/entranceinfo
+mcode/all/data/entranceinfo.prj
+
+*.svg
+*.puml
