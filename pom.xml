@@ -5,6 +5,11 @@
     <groupId>edu.whut.cs.se</groupId>
     <artifactId>udp-agent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>udp-agent-master</module>
+        <module>dhdas</module>
+    </modules>
 
     <properties>
         <java.version>1.8</java.version>
@@ -54,23 +59,6 @@
             <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- 加载matlab编译的jar包 -->
-        <dependency>
-            <groupId>matlab</groupId>
-            <artifactId>matlab.javabuilder</artifactId>
-            <version>R2024b</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/javabuilder.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>matlab</groupId>
-            <artifactId>matlab.pso</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/entranceinfo.jar</systemPath>
-        </dependency>
-
     </dependencies>
     <dependencyManagement>
         <dependencies>

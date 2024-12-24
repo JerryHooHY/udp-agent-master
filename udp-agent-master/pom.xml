@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>edu.whut.cs.se</groupId>
+        <artifactId>udp-agent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>cn.whut</groupId>
+    <artifactId>udp-agent-master</artifactId>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
+    </properties>
+
+
+    <dependencies>
+        <!-- 加载matlab编译的jar包 -->
+        <dependency>
+            <groupId>matlab</groupId>
+            <artifactId>matlab.javabuilder</artifactId>
+            <version>R2024b</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/javabuilder.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>matlab</groupId>
+            <artifactId>matlab.pso</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/entranceinfo.jar</systemPath>
+        </dependency>
+
+    </dependencies>
+
+</project>

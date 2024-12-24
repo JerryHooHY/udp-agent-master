@@ -1,0 +1,7 @@
+dhdas: # 小电脑的ip地址
+  ip: 10.151.1.29
+  port: 4008
+kafka:
+  server: 10.151.1.109:9092
+  topic: upload_data
+datapath: ./data
