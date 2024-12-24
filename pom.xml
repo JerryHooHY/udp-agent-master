@@ -68,7 +68,7 @@
             <artifactId>matlab.pso</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/coordinate.jar</systemPath>
+            <systemPath>${basedir}/lib/entranceinfo.jar</systemPath>
         </dependency>
 
     </dependencies>

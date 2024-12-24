@@ -1,5 +1,6 @@
 package edu.whut.cs.se.udpagent.service;
 import edu.whut.cs.se.udpagent.parser.AwarenessRecognitionParser;
+import edu.whut.cs.se.udpagent.parser.EntranceInfoParser;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;

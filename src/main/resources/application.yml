@@ -9,7 +9,7 @@ fiberOptic:
     core_size: 2
     max_size: 2
     queue_capacity: 0
-  dataPath: C:\Users\15854\Desktop\matlab\PSO\5th_data.txt
+  dataDir: C:\Users\15854\Desktop\matlab\整体代码(6)\整体代码\data
 
 
 #channels: # 几号通道的几号测点有数据

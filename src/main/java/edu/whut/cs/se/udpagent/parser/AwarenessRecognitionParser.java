@@ -1,9 +1,13 @@
 package edu.whut.cs.se.udpagent.parser;
 import com.alibaba.fastjson2.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Random;
 @Service
 public class AwarenessRecognitionParser implements ResponseParser{
+    @Autowired
+    private EntranceInfoParser entranceInfoParser;
+
     @Override
     public String parseResponse(byte[] responseData) {
         return null;
@@ -11,10 +15,11 @@ public class AwarenessRecognitionParser implements ResponseParser{
     public String getSafetyStatus(){
         Double[] safetyStatusList = {1.0,2.0,3.0,4.0};
         // 创建随机数生成器
-        Random random = new Random();
+//        Random random = new Random();
 
         JSONObject safetyStatusProperties = new JSONObject();
-        safetyStatusProperties.put("value", safetyStatusList[random.nextInt(safetyStatusList.length)]);
+//        safetyStatusProperties.put("value", safetyStatusList[random.nextInt(safetyStatusList.length)]);
+        safetyStatusProperties.put("value", (double)entranceInfoParser.getOutside());
         JSONObject safetyStatus = new JSONObject();
         safetyStatus.put("properties",safetyStatusProperties);
         // 将属性包装在"features"中
@@ -43,10 +48,10 @@ public class AwarenessRecognitionParser implements ResponseParser{
     }
     public String getConstructionDegree(){
         // 创建随机数生成器
-        Random random = new Random();
+//        Random random = new Random();
 
         JSONObject constructionDegreeProperties = new JSONObject();
-        constructionDegreeProperties.put("value", 1 + 99 * random.nextDouble());
+        constructionDegreeProperties.put("value", entranceInfoParser.getStructure());
         JSONObject constructionDegree = new JSONObject();
         constructionDegree.put("properties",constructionDegreeProperties);
         // 将属性包装在"features"中
@@ -76,10 +81,10 @@ public class AwarenessRecognitionParser implements ResponseParser{
     }
     public String getDeviceDegree(){
         // 创建随机数生成器
-        Random random = new Random();
+//        Random random = new Random();
 
         JSONObject deviceDegreeProperties = new JSONObject();
-        deviceDegreeProperties.put("value", 1 + 99 * random.nextDouble());
+        deviceDegreeProperties.put("value", entranceInfoParser.getDevice());
         JSONObject deviceDegree = new JSONObject();
         deviceDegree.put("properties",deviceDegreeProperties);
         // 将属性包装在"features"中

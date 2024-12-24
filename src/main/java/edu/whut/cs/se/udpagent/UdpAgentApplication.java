@@ -68,10 +68,11 @@ public class UdpAgentApplication implements CommandLineRunner {
         sourceExplosionService.sendToKafka();
 
     }
+
+    // 能否合并？
     @Scheduled(fixedRate = 5000)
     public void getAwarenessRecognition() throws UnknownHostException {
         awarenessRecognitionService.sendToKafka();
-
     }
 
 
