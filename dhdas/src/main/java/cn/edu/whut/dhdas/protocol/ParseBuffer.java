@@ -1,9 +1,9 @@
 package cn.edu.whut.dhdas.protocol;
 
 import cn.edu.whut.dhdas.entity.DataColumn;
-import cn.edu.whut.dhdas.service.FileWriteService;
 import cn.edu.whut.dhdas.service.KafkaService;
 import cn.edu.whut.dhdas.service.Parser;
+import cn.edu.whut.dhdas.service.ScheduledTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,17 +21,15 @@ public class ParseBuffer {
     private byte[] m_NetData;           // 网络缓存数据
     private int m_nVaildDataLength;     // 数据有效长度
 
-    // 数据持久化暂存
-    private List tmpData;
     @Autowired
     private ExecutorService executorService;
+
     @Autowired
-    FileWriteService fileWriteService;
+    ScheduledTask scheduledTask;
 
     public ParseBuffer() {
         m_NetData = new byte[1024 * 1024];  // 缓存1M的数据
         m_nVaildDataLength = 0;
-        tmpData = new ArrayList<DataColumn>();
     }
 
     @Autowired
@@ -105,29 +103,29 @@ public class ParseBuffer {
             break;
             case 124:  // 时域数据(数据排列方式：ABCABCABC...)
             {
-                // 解析数据
-                long lPos = readLong(byteData,nOffset);
-                nOffset += 8;
-                // 每通道数据量
-                int nRecount = readInt(byteData,nOffset);
-                nOffset += 4;
-                // 通道个数
-                int nChnCount = readInt(byteData,nOffset);
-                nOffset += 4;
-                System.out.println("lPos:" + lPos);
-                System.out.println("nRecount:" + nRecount);
-                System.out.println("nChnCount:" + nChnCount);
-
-                // 数据量
-                // 20221020 解析出一组通道，立即发布mqtt消息
-                for (int j = 0; j < nRecount; j++)
-                {
-                    for (int i = 0; i < nChnCount; i++)
-                    {
-                        float fltVal = readFloat(byteData,nOffset+(j*nChnCount + i)*4);
-                        System.out.println(fltVal);
-                    }
-                }
+//                // 解析数据
+//                long lPos = readLong(byteData,nOffset);
+//                nOffset += 8;
+//                // 每通道数据量
+//                int nRecount = readInt(byteData,nOffset);
+//                nOffset += 4;
+//                // 通道个数
+//                int nChnCount = readInt(byteData,nOffset);
+//                nOffset += 4;
+//                System.out.println("lPos:" + lPos);
+//                System.out.println("nRecount:" + nRecount);
+//                System.out.println("nChnCount:" + nChnCount);
+//
+//                // 数据量
+//                // 20221020 解析出一组通道，立即发布mqtt消息
+//                for (int j = 0; j < nRecount; j++)
+//                {
+//                    for (int i = 0; i < nChnCount; i++)
+//                    {
+//                        float fltVal = readFloat(byteData,nOffset+(j*nChnCount + i)*4);
+//                        System.out.println(fltVal);
+//                    }
+//                }
 
                 break;
             }
@@ -150,19 +148,8 @@ public class ParseBuffer {
                     System.out.println(strMsg);
                 }
 
-                // 保存结果，每五秒存储一次
-                // 数据产生时间大致是1秒3-4次，故取250
-                tmpData.add(new DataColumn(time));
-                if (System.currentTimeMillis() % 5000 < 250) {
-                    // 持久化
-                    StringBuffer content = new StringBuffer();
-                    for (int i = 0; i < tmpData.size(); ++i) {
-                        content.append(tmpData.get(i).toString());
-                    }
-                    System.out.println("持久化数据: " + content);
-                    executorService.submit(() -> fileWriteService.writeToFile(content.toString()));
-                    tmpData.clear();
-                }
+                // 保存结果
+                scheduledTask.addData(new DataColumn(time));
 
                 // 解析数据为JsonString
                 String jsonString = parser.parser(result);

@@ -34,10 +34,28 @@ public class DataColumn {
     private float time;
     @Getter
     @Setter
-    private float channel0;
+    private float channel1;
     @Getter
     @Setter
-    private float channel1;
+    private float channel2;
+
+    // 测试代码
+    private float channel3;
+    private float channel4;
+    private float channel5;
+    private float channel6;
+    private float channel7;
+    private float channel8;
+    private float channel9;
+    private float channel10;
+    private float channel11;
+    private float channel12;
+    private float channel13;
+    private float channel14;
+    private float channel15;
+    private float channel16;
+    private float channel17;
+
 
     // 监测断面
     private Section[] sections = new Section[5];
@@ -54,16 +72,39 @@ public class DataColumn {
     public DataColumn(float time, List<Float> resut) {
 //        this.setTime(resut.get(0));
         this.setTime(time);
-        this.setChannel0(resut.get(0));
-        this.setChannel1(resut.get(1));
+        this.setChannel1(resut.get(0));
+        this.setChannel2(resut.get(1));
     }
 
     // 传感器数值随机
+//    public DataColumn(float time) {
+//        this.setTime(time);
+//        this.setSections();
+//        this.setGrounds();
+//        this.setDoors();
+//    }
+
+    // 测试代码，随机当前的十七列数据
     public DataColumn(float time) {
         this.setTime(time);
-        this.setSections();
-        this.setGrounds();
-        this.setDoors();
+        this.channel1 = random.nextFloat() * 4 - 2;
+        this.channel2 = random.nextFloat() * 2 - 1;
+        this.channel3 = random.nextFloat() * 2 - 1;
+        this.channel4 = random.nextFloat() * 2 - 1;
+        this.channel5 = random.nextFloat() * 10 - 5;
+        this.channel6 = random.nextFloat() * 4 - 2;
+        this.channel7 = random.nextFloat() * 2 - 1;
+        this.channel8 = random.nextFloat() * 2 - 1;
+        this.channel9 = random.nextFloat() * 40000000 - 20000000;
+        this.channel10 = random.nextFloat() * 1000;
+        this.channel11 = random.nextFloat() * 40 - 20;
+        this.channel12 = random.nextFloat() * 20 - 10;
+        this.channel13 = random.nextFloat() * 10 - 5;
+        this.channel14 = random.nextFloat() * 310 - 10;
+        this.channel15 = random.nextFloat() * 610 - 10;
+        this.channel16 = random.nextFloat() * 10 - 5;
+        this.channel17 = random.nextFloat() * 40- 20;
+
     }
 
     public void setSections() {
@@ -102,48 +143,67 @@ public class DataColumn {
 
     @Override
     public String toString() {
-        // 注意保证字段顺序
-//        StringBuffer sb = new StringBuffer();
-//        sb.append(this.getTime()).append('\t').
-//                append(this.getChannel0()).append('\t').
-//                append(this.getChannel1()).
-//                append('\n');
-//        return sb.toString();
-
-
         StringBuffer sb = new StringBuffer();
         sb.append(this.getTime()).append('\t');
 
-        // 断面
-        for (int i = 0; i < sections.length; ++i) {
-            sb.append(sections[i].a).append('\t').
-                    append(sections[i].v).append('\t').
-                    append(sections[i].ap).append('\t').
-                    append(sections[i].s).append('\t').
-                    append(sections[i].t).append('\t').
-                    append(sections[i].p).append('\t').
-                    append(sections[i].oa).append('\t').
-                    append(sections[i].os).append('\t');
-        }
+        // 注意保证字段顺序
+//        sb.append(this.getTime()).append('\t').
+//                append(this.getChannel1()).append('\t').
+//                append(this.getChannel2()).
+//                append('\n');
+//        return sb.toString();
 
-        // 地面
-        for (int i = 0; i < ua.length; ++i) {
-            sb.append(ua[i]).append('\t');
-        }
-        for (int i = 0; i < uoa.length; ++i) {
-            sb.append(uoa[i]).append('\t');
-        }
+//        // 断面
+//        for (int i = 0; i < sections.length; ++i) {
+//            sb.append(sections[i].a).append('\t').
+//                    append(sections[i].v).append('\t').
+//                    append(sections[i].ap).append('\t').
+//                    append(sections[i].s).append('\t').
+//                    append(sections[i].t).append('\t').
+//                    append(sections[i].p).append('\t').
+//                    append(sections[i].oa).append('\t').
+//                    append(sections[i].os).append('\t');
+//        }
+//
+//        // 地面
+//        for (int i = 0; i < ua.length; ++i) {
+//            sb.append(ua[i]).append('\t');
+//        }
+//        for (int i = 0; i < uoa.length; ++i) {
+//            sb.append(uoa[i]).append('\t');
+//        }
+//
+//        // 防护门
+//        for (int i = 0; i < doors.length; ++i) {
+//            sb.append(doors[i].dv).append('\t').
+//                    append(doors[i].dp).append('\t').
+//                    append(doors[i].ds1).append('\t').
+//                    append(doors[i].ds2).append('\t').
+//                    append(doors[i].dov).append('\t').
+//                    append(doors[i].dos1).append('\t').
+//                    append(doors[i].dos2).append('\t');
+//        }
 
-        // 防护门
-        for (int i = 0; i < doors.length; ++i) {
-            sb.append(doors[i].dv).append('\t').
-                    append(doors[i].dp).append('\t').
-                    append(doors[i].ds1).append('\t').
-                    append(doors[i].ds2).append('\t').
-                    append(doors[i].dov).append('\t').
-                    append(doors[i].dos1).append('\t').
-                    append(doors[i].dos2).append('\t');
-        }
+        // 测试
+        sb.append(channel1).append('\t').
+                append(channel2).append('\t').
+                append(channel3).append('\t').
+                append(channel4).append('\t').
+                append(channel5).append('\t').
+                append(channel6).append('\t').
+                append(channel7).append('\t').
+                append(channel8).append('\t').
+                append(channel9).append('\t').
+                append(channel10).append('\t').
+                append(channel11).append('\t').
+                append(channel12).append('\t').
+                append(channel13).append('\t').
+                append(channel14).append('\t').
+                append(channel15).append('\t').
+                append(channel16).append('\t').
+                append(channel17).append('\t');
+
+        sb.append('\n');
 
         return sb.toString();
     }
