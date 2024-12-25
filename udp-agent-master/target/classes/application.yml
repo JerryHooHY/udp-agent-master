@@ -9,7 +9,7 @@ fiberOptic:
     core_size: 2
     max_size: 2
     queue_capacity: 0
-  dataDir: C:\Users\15854\Desktop\matlab\整体代码(6)\整体代码\data
+  dataDir: C:\Users\15854\Desktop\udp-agent-master\data
 
 
 #channels: # 几号通道的几号测点有数据

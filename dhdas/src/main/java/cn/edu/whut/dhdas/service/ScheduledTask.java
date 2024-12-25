@@ -55,7 +55,7 @@ public class ScheduledTask {
             }
 
             // 注意，对文件的操作未加锁
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataPath + "\\" + "data_tmp.txt", false))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataPath + "\\" + "data_latest.txt", false))) {
                 System.out.println("当前线程id" + Thread.currentThread().getId() + "writeToFile data_tmp.txt: " + System.currentTimeMillis());
 
                 writer.write(content.toString());
